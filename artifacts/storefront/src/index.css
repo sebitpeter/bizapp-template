@@ -1,0 +1,316 @@
+/*
+ * THEME
+ * -----
+ * Every colour in the app comes from five brand colours:
+ *   --brand-primary, --brand-accent, --brand-ink, --brand-bg, --brand-surface
+ * Their defaults are injected into index.html at build time from
+ * business/business.config.ts, and replaced at runtime by Admin → Branding
+ * (see src/lib/theme.tsx). Everything else below is derived with color-mix(),
+ * so you should never need to edit hex codes in components.
+ * Fonts come from business.config.ts too (--app-font-*).
+ */
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Fallbacks only — real values are injected from the business config. */
+  --brand-primary: #8d304d;
+  --brand-accent: #f2a263;
+  --brand-ink: #4c202f;
+  --brand-bg: #f7f0e4;
+  --brand-surface: #fff7e8;
+  --app-font-sans: system-ui, sans-serif;
+  --app-font-serif: Georgia, serif;
+  --app-font-mono: ui-monospace, monospace;
+}
+
+/* Derived tokens. `.brand-scope` lets the Branding page preview a draft theme
+   inside one box without changing the whole page. */
+:root,
+.brand-scope {
+  /* Derived brand shades */
+  --brand-primary-hover: color-mix(in oklab, var(--brand-primary) 82%, black);
+  --brand-accent-strong: color-mix(in oklab, var(--brand-accent) 78%, var(--brand-primary));
+  --brand-bg-alt: color-mix(in oklab, var(--brand-bg) 88%, var(--brand-ink));
+  --brand-line: color-mix(in oklab, var(--brand-bg) 84%, var(--brand-ink));
+  --brand-line-strong: color-mix(in oklab, var(--brand-bg) 72%, var(--brand-ink));
+  --brand-muted: color-mix(in oklab, var(--brand-ink) 58%, var(--brand-bg));
+  --brand-muted-strong: color-mix(in oklab, var(--brand-ink) 78%, var(--brand-bg));
+  --brand-on-ink: color-mix(in oklab, var(--brand-surface) 78%, var(--brand-accent));
+  --brand-on-primary: var(--brand-surface);
+
+  /* shadcn/ui tokens mapped onto the brand */
+  --background: var(--brand-bg);
+  --foreground: var(--brand-ink);
+  --border: var(--brand-line);
+  --input: var(--brand-line-strong);
+  --ring: var(--brand-primary);
+  --card: var(--brand-surface);
+  --card-foreground: var(--brand-ink);
+  --card-border: var(--brand-line);
+  --popover: var(--brand-surface);
+  --popover-foreground: var(--brand-ink);
+  --popover-border: var(--brand-line);
+  --primary: var(--brand-primary);
+  --primary-foreground: var(--brand-on-primary);
+  --secondary: var(--brand-accent);
+  --secondary-foreground: var(--brand-ink);
+  --muted: var(--brand-bg-alt);
+  --muted-foreground: var(--brand-muted-strong);
+  --accent: var(--brand-bg-alt);
+  --accent-foreground: var(--brand-ink);
+  --destructive: #c0392b;
+  --destructive-foreground: #ffffff;
+  --sidebar: var(--brand-ink);
+  --sidebar-foreground: var(--brand-bg);
+  --sidebar-border: color-mix(in oklab, var(--brand-ink) 80%, white);
+  --sidebar-primary: var(--brand-accent);
+  --sidebar-primary-foreground: var(--brand-ink);
+  --sidebar-accent: color-mix(in oklab, var(--brand-ink) 86%, white);
+  --sidebar-accent-foreground: var(--brand-bg);
+  --sidebar-ring: var(--brand-accent);
+  --chart-1: var(--brand-primary);
+  --chart-2: var(--brand-accent);
+  --chart-3: var(--brand-ink);
+  --chart-4: var(--brand-muted);
+  --chart-5: var(--brand-accent-strong);
+
+  --button-outline: rgba(0, 0, 0, 0.1);
+  --badge-outline: rgba(0, 0, 0, 0.05);
+  --elevate-1: rgba(0, 0, 0, 0.03);
+  --elevate-2: rgba(0, 0, 0, 0.08);
+  --primary-border: color-mix(in oklab, var(--primary) 90%, black);
+  --secondary-border: color-mix(in oklab, var(--secondary) 90%, black);
+  --muted-border: color-mix(in oklab, var(--muted) 90%, black);
+  --accent-border: color-mix(in oklab, var(--accent) 90%, black);
+  --destructive-border: color-mix(in oklab, var(--destructive) 90%, black);
+  --sidebar-primary-border: color-mix(in oklab, var(--sidebar-primary) 90%, black);
+  --sidebar-accent-border: color-mix(in oklab, var(--sidebar-accent) 90%, white);
+  --radius: 0.75rem;
+  --spacing: 0.25rem;
+}
+
+@theme inline {
+  /* Brand utilities: bg-brand-primary, text-brand-ink, border-brand-line, ... */
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-hover: var(--brand-primary-hover);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-strong: var(--brand-accent-strong);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-bg: var(--brand-bg);
+  --color-brand-bg-alt: var(--brand-bg-alt);
+  --color-brand-surface: var(--brand-surface);
+  --color-brand-line: var(--brand-line);
+  --color-brand-line-strong: var(--brand-line-strong);
+  --color-brand-muted: var(--brand-muted);
+  --color-brand-muted-strong: var(--brand-muted-strong);
+  --color-brand-on-ink: var(--brand-on-ink);
+  --color-brand-on-primary: var(--brand-on-primary);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-card-border: var(--card-border);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover-border: var(--popover-border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-border: var(--primary-border);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-border: var(--secondary-border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted-border: var(--muted-border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-border: var(--accent-border);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-border: var(--destructive-border);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary-border: var(--sidebar-primary-border);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent-border: var(--sidebar-accent-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/**
+ * Using the elevate system.
+ * Automatic contrast adjustment.
+ *
+ * <element className="hover-elevate" />
+ * <element className="active-elevate-2" />
+ *
+ * // Using the tailwind utility when a data attribute is "on"
+ * <element className="toggle-elevate data-[state=on]:toggle-elevated" />
+ * // Or manually controlling the toggle state
+ * <element className="toggle-elevate toggle-elevated" />
+ *
+ * Elevation systems have to handle many states.
+ * - not-hovered, vs. hovered vs. active  (three mutually exclusive states)
+ * - toggled or not
+ * - focused or not (this is not handled with these utilities)
+ *
+ * Even without handling focused or not, this is six possible combinations that
+ * need to be distinguished from eachother visually.
+ */
+@layer utilities {
+  /* Hide ugly search cancel button in Chrome until we can style it properly */
+  input[type='search']::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+
+  /* Placeholder styling for contentEditable div */
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: var(--muted-foreground);
+    pointer-events: none;
+  }
+
+  /* .no-default-hover-elevate/no-default-active-elevate is an escape hatch so consumers of
+   * buttons/badges can remove the automatic brightness adjustment on interactions
+   * and program their own. */
+  .no-default-hover-elevate {
+  }
+
+  .no-default-active-elevate {
+  }
+
+  /**
+   * Toggleable backgrounds go behind the content. Hoverable/active goes on top.
+   * This way they can stack/compound. Both will overlap the parent's borders!
+   * So borders will be automatically adjusted both on toggle, and hover/active,
+   * and they will be compounded.
+   */
+  .toggle-elevate::before,
+  .toggle-elevate-2::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    /*border-radius: inherit;   match rounded corners */
+    border-radius: inherit;
+    z-index: -1;
+    /* sits behind content but above backdrop */
+  }
+
+  .toggle-elevate.toggle-elevated::before {
+    background-color: var(--elevate-2);
+  }
+
+  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
+  .border.toggle-elevate::before {
+    inset: -1px;
+  }
+
+  /* Does not work on elements with overflow:hidden! */
+  .hover-elevate:not(.no-default-hover-elevate),
+  .active-elevate:not(.no-default-active-elevate),
+  .hover-elevate-2:not(.no-default-hover-elevate),
+  .active-elevate-2:not(.no-default-active-elevate) {
+    position: relative;
+    z-index: 0;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate)::after,
+  .active-elevate:not(.no-default-active-elevate)::after,
+  .hover-elevate-2:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:not(.no-default-active-elevate)::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    /*border-radius: inherit;   match rounded corners */
+    border-radius: inherit;
+    z-index: 999;
+    /* sits in front of content */
+  }
+
+  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-1);
+  }
+
+  .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-2);
+  }
+
+  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
+    inset: -1px;
+  }
+}
+
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { min-width: 320px; }
+  button, a, input, textarea, select { -webkit-tap-highlight-color: transparent; }
+  ::selection { background: var(--brand-accent); color: var(--brand-ink); }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes toast-pop {
+  from { opacity: 0; transform: translateY(10px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-rise-in { animation: rise-in .65s cubic-bezier(.22,1,.36,1) both; }
+.animate-toast-pop { animation: toast-pop .28s cubic-bezier(.22,1,.36,1) both; }
+.delay-1 { animation-delay: .08s; }
+.delay-2 { animation-delay: .16s; }
+.delay-3 { animation-delay: .24s; }
+.delay-4 { animation-delay: .32s; }
+.serif { font-family: var(--app-font-serif); }
+.mono { font-family: var(--app-font-mono); }
+.shadow-brand { box-shadow: 0 18px 45px color-mix(in srgb, var(--brand-ink) 10%, transparent); }
+.shadow-brand-lg { box-shadow: 0 28px 80px color-mix(in srgb, var(--brand-ink) 17%, transparent); }
+.focus-ring:focus-visible { outline: 3px solid color-mix(in srgb, var(--brand-accent) 60%, transparent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

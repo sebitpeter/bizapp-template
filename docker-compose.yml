@@ -1,0 +1,47 @@
+# Local "production-like" stack: Postgres + the app (+ optional Redis).
+#   1. cp .env.example .env   and fill it in (DATABASE_URL below overrides yours)
+#   2. docker compose up --build
+#   3. open http://localhost:8080  (admin: http://localhost:8080/admin)
+# Optional Redis for shared rate limits:  docker compose --profile redis up --build
+#   and set REDIS_URL=redis://redis:6379 in .env
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: bizapp
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me-locally}
+      POSTGRES_DB: bizapp
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bizapp -d bizapp"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: postgres://bizapp:${POSTGRES_PASSWORD:-change-me-locally}@db:5432/bizapp
+      NODE_ENV: production
+      PORT: "8080"
+      # Plain http on localhost: allow the session cookie without https.
+      # REMOVE this line when you put the app behind https.
+      COOKIE_SECURE: "false"
+      TRUST_PROXY: "loopback"
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  redis:
+    image: redis:7-alpine
+    profiles: ["redis"]
+    restart: unless-stopped
+
+volumes:
+  pgdata:

@@ -1,0 +1,20 @@
+{
+  "$comment": "Example seed data for the coffee-shop config. Prices are in UGX.",
+  "products": [
+    { "name": "Flat White", "slug": "flat-white", "category": "Espresso", "price": 9000, "description": "Double ristretto with silky steamed milk.", "imageUrl": "https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&w=1000&q=80", "rating": 4.9, "reviewCount": 120, "ingredients": ["Espresso", "Milk"], "tags": ["Bestseller"], "available": true },
+    { "name": "Cold Brew", "slug": "cold-brew", "category": "Cold drinks", "price": 10000, "description": "Steeped for 18 hours, smooth and chocolatey.", "imageUrl": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=1000&q=80", "rating": 4.8, "reviewCount": 64, "ingredients": ["Coffee", "Water", "Ice"], "tags": ["Vegan"], "available": true },
+    { "name": "Mount Elgon Beans 250g", "slug": "elgon-beans-250", "category": "Beans", "price": 32000, "description": "Washed Arabica with notes of blackcurrant and cocoa.", "imageUrl": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=1000&q=80", "rating": 5, "reviewCount": 38, "ingredients": ["Arabica coffee"], "tags": ["Single origin"], "available": true },
+    { "name": "Banana Bread", "slug": "banana-bread", "category": "Snacks", "price": 7000, "description": "Moist, lightly spiced and baked in-house.", "imageUrl": "https://images.unsplash.com/photo-1606101273945-e9eba91c0dc4?auto=format&fit=crop&w=1000&q=80", "rating": 4.7, "reviewCount": 22, "ingredients": ["Banana", "Flour", "Cinnamon"], "tags": ["House-made"], "available": true }
+  ],
+  "reviews": [
+    { "customerName": "Ruth A.", "quote": "Best flat white in Kampala, and the staff remember your name.", "rating": 5, "verified": true, "productName": "Flat White" },
+    { "customerName": "Moses K.", "quote": "The cold brew got me through exam season.", "rating": 5, "verified": true, "productName": "Cold Brew" }
+  ],
+  "content": [
+    { "key": "announcement", "label": "Announcement bar", "value": "New: Mount Elgon washed beans are in" },
+    { "key": "hero_title", "label": "Hero title", "value": "Brewed bold. Served warm." },
+    { "key": "hero_subtitle", "label": "Hero subtitle", "value": "Specialty Ugandan coffee, roasted in small batches and poured by people who care." },
+    { "key": "story", "label": "Our story", "value": "Ember started as a cart outside a lecture hall. Today we roast beans from Mount Elgon farmer groups every week." }
+  ],
+  "sampleOrders": []
+}

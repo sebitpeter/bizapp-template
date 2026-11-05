@@ -1,0 +1,13 @@
+{
+  "name": "@workspace/business",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Everything that makes this app *your* business: name, colours, contact details, UI copy and seed data.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "zod": "catalog:"
+  }
+}

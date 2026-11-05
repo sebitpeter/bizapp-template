@@ -1,0 +1,202 @@
+{
+  "$comment": "Starter data loaded into an EMPTY database on first start. Swap this file (or point SEED_FILE at another one) for a different business. Prices are in the currency set in business.config.ts. \"stock\" is optional: leave it out for items you never run out of, or give a number and the shop will refuse orders beyond it.",
+  "products": [
+    {
+      "name": "Classic Sourdough",
+      "slug": "classic-sourdough",
+      "category": "Breads",
+      "price": 18000,
+      "description": "Crispy golden crust, soft open crumb, and a slow-fermented tang.",
+      "imageUrl": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=85",
+      "rating": 4.9,
+      "reviewCount": 86,
+      "ingredients": [
+        "Wheat flour",
+        "Water",
+        "Sea salt",
+        "Sourdough starter"
+      ],
+      "tags": [
+        "Bestseller",
+        "Vegan"
+      ],
+      "available": true
+    },
+    {
+      "name": "French Butter Croissants",
+      "slug": "french-butter-croissants",
+      "category": "Pastries",
+      "price": 6000,
+      "description": "Flaky, multi-layered, and baked until deeply golden.",
+      "imageUrl": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1000&q=85",
+      "rating": 5,
+      "reviewCount": 64,
+      "ingredients": [
+        "Wheat flour",
+        "Cultured butter",
+        "Milk",
+        "Eggs"
+      ],
+      "tags": [
+        "Bestseller"
+      ],
+      "available": true
+    },
+    {
+      "name": "Decadent Chocolate Fudge Cake",
+      "slug": "chocolate-fudge-cake",
+      "category": "Cakes",
+      "price": 150000,
+      "description": "Dark chocolate sponge layered with glossy ganache and berries.",
+      "imageUrl": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=85",
+      "rating": 4.8,
+      "reviewCount": 41,
+      "ingredients": [
+        "Cocoa",
+        "Wheat flour",
+        "Dark chocolate",
+        "Cream",
+        "Raspberries"
+      ],
+      "tags": [
+        "Celebration"
+      ],
+      "available": true,
+      "stock": 3
+    },
+    {
+      "name": "Red Velvet Cupcakes",
+      "slug": "red-velvet-cupcakes",
+      "category": "Cakes",
+      "price": 45000,
+      "description": "Fluffy red velvet crumb crowned with cream cheese frosting.",
+      "imageUrl": "/products/red-velvet-cupcakes.jpg",
+      "rating": 4.9,
+      "reviewCount": 53,
+      "ingredients": [
+        "Cocoa",
+        "Wheat flour",
+        "Cream cheese",
+        "Vanilla"
+      ],
+      "tags": [
+        "Vegetarian"
+      ],
+      "available": true,
+      "stock": 12
+    },
+    {
+      "name": "Chunky Dark Chocolate Chip Cookies",
+      "slug": "dark-chocolate-chip-cookies",
+      "category": "Cookies",
+      "price": 25000,
+      "description": "Soft-baked centers, crisp edges, and pools of dark chocolate.",
+      "imageUrl": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1000&q=85",
+      "rating": 4.9,
+      "reviewCount": 78,
+      "ingredients": [
+        "Wheat flour",
+        "Brown sugar",
+        "Dark chocolate",
+        "Butter"
+      ],
+      "tags": [
+        "Bestseller"
+      ],
+      "available": true
+    },
+    {
+      "name": "Spinach & Feta Danish",
+      "slug": "spinach-feta-danish",
+      "category": "Savory",
+      "price": 12000,
+      "description": "Golden puff pastry filled with spinach and tangy feta.",
+      "imageUrl": "https://images.unsplash.com/photo-1623334044303-241021148842?auto=format&fit=crop&w=1000&q=85",
+      "rating": 4.7,
+      "reviewCount": 29,
+      "ingredients": [
+        "Puff pastry",
+        "Spinach",
+        "Feta",
+        "Sesame"
+      ],
+      "tags": [
+        "Vegetarian"
+      ],
+      "available": true
+    }
+  ],
+  "reviews": [
+    {
+      "customerName": "Maya W.",
+      "quote": "The sourdough is the kind of bread you plan your whole breakfast around. Perfect crust, every time.",
+      "rating": 5,
+      "verified": true,
+      "productName": "Classic Sourdough"
+    },
+    {
+      "customerName": "Daniel K.",
+      "quote": "Those croissants arrived still warm. They have officially ruined supermarket pastries for me.",
+      "rating": 5,
+      "verified": true,
+      "productName": "French Butter Croissants"
+    },
+    {
+      "customerName": "Amina N.",
+      "quote": "The chocolate cake was the star of our celebration. Rich, elegant, and not too sweet.",
+      "rating": 5,
+      "verified": true,
+      "productName": "Decadent Chocolate Fudge Cake"
+    }
+  ],
+  "content": [
+    {
+      "key": "announcement",
+      "label": "Announcement bar",
+      "value": "Free delivery on orders over $35 · baked fresh every morning"
+    },
+    {
+      "key": "hero_title",
+      "label": "Hero title",
+      "value": "Made slow. Gone fast."
+    },
+    {
+      "key": "hero_subtitle",
+      "label": "Hero subtitle",
+      "value": "Small-batch breads, golden pastries, and treats worth lingering over. Delivered warm-ish across the neighborhood."
+    },
+    {
+      "key": "story",
+      "label": "Our story",
+      "value": "We began with one stubborn sourdough starter, a secondhand oven, and a belief that good bread makes a day feel more possible. We still mix, shape, and bake every batch by hand in our little Juba kitchen."
+    }
+  ],
+  "sampleOrders": [
+    {
+      "customerName": "Nia Otieno",
+      "customerEmail": "nia@example.com",
+      "items": [
+        {
+          "slug": "classic-sourdough",
+          "quantity": 2
+        }
+      ],
+      "status": "Preparing",
+      "deliveryNote": "Please leave with the concierge",
+      "customerPhone": "+256772000111"
+    },
+    {
+      "customerName": "James Mwangi",
+      "customerEmail": "james@example.com",
+      "items": [
+        {
+          "slug": "french-butter-croissants",
+          "quantity": 4
+        }
+      ],
+      "status": "Out for Delivery",
+      "deliveryNote": null,
+      "customerPhone": "+256701000222"
+    }
+  ]
+}

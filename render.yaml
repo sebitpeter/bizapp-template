@@ -1,0 +1,56 @@
+# Render Blueprint — see DEPLOYMENT.md ("Option A: Render").
+# Render → New → Blueprint → pick your GitHub repo. It creates the database
+# and the web service; you then fill in the secrets marked "sync: false".
+databases:
+  - name: bizapp-db
+    plan: free            # free Postgres expires after 30 days — upgrade for a real shop
+    databaseName: bizapp
+    user: bizapp
+
+services:
+  - type: web
+    name: bizapp
+    runtime: node
+    plan: free            # free instances sleep when idle; use "starter" for a real shop
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm run build
+    startCommand: node --enable-source-maps artifacts/api-server/dist/index.mjs
+    healthCheckPath: /api/readyz
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bizapp-db
+          property: connectionString
+      - key: SETUP_TOKEN
+        generateValue: true
+      - key: PUBLIC_URL
+        sync: false       # e.g. https://bizapp.onrender.com (your real address)
+      - key: FLW_SECRET_KEY
+        sync: false
+      - key: FLW_SECRET_HASH
+        sync: false
+      - key: PESAPAL_CONSUMER_KEY
+        sync: false
+      - key: PESAPAL_CONSUMER_SECRET
+        sync: false
+      - key: PESAPAL_ENV
+        value: sandbox
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_FROM
+        sync: false
+      - key: AT_USERNAME
+        sync: false
+      - key: AT_API_KEY
+        sync: false
+      - key: NOTIFY_SHOP_EMAIL
+        sync: false
+      - key: NOTIFY_SHOP_PHONE
+        sync: false
